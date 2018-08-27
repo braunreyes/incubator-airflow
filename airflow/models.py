@@ -96,6 +96,8 @@ from airflow.utils.weight_rule import WeightRule
 from airflow.utils.net import get_hostname
 from airflow.utils.log.logging_mixin import LoggingMixin
 
+B = """Run"""
+
 install_aliases()
 
 Base = declarative_base()
@@ -2911,8 +2913,8 @@ class BaseOperator(LoggingMixin):
             ignore_ti_state=False,
             mark_success=False):
         """
-        Run a set of task instances for a date range.
-        """
+        %s a set of task instances for a date range.
+        """ % B
         start_date = start_date or self.start_date
         end_date = end_date or self.end_date or timezone.utcnow()
 
